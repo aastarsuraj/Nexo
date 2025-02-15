@@ -56,7 +56,7 @@ const Navbar = () => {
     <div className='flex items-center gap-2'>
       <button onClick={() => navigate('/login')} className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block hover:scale-105 transition-all'>Create account</button>
       <button 
-        onClick={() => window.location.href = 'http://localhost:5174/'} 
+        onClick={() => window.location.href = 'https://nexo-backend-vlam.onrender.com'} 
         className='bg-primary text-white px-8 py-3 rounded-full font-light hidden md:block hover:scale-105 transition-all'
       >
         Admin
