@@ -1,5 +1,6 @@
 import express from "express"
 import cors from 'cors'
+import path from 'path'
 import 'dotenv/config'
 import connectDB from "./config/mongodb.js"
 import connectCloudinary from "./config/cloudinary.js"
@@ -17,13 +18,17 @@ connectCloudinary()
 app.use(express.json())
 app.use(cors())
 
+// Serve static files from React app
+app.use(express.static(path.join(__dirname, '../frontend/dist')))
+
 // api endpoints
 app.use("/api/user", userRouter)
 app.use("/api/admin", adminRouter)
 app.use("/api/doctor", doctorRouter)
 
-app.get("/", (req, res) => {
-  res.send("API Working")
+// Handle React routing, return all requests to React app
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/dist/index.html'))
 });
 
 app.listen(port, () => console.log(`Server started on PORT:${port}`))
